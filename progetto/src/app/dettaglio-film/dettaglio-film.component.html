@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="film-detail mt-3">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="img-fluid" src="../assets/{{film[0].locandina}}">
+      </div>
+      <div class="col-md-8">
+        <h1>{{film[0].titolo}}</h1>
+        <h6><b>Regista:</b> {{film[0].regista}}</h6>
+        <h6><b>Cast:</b> {{film[0].cast}}</h6>
+        <h6><b>Anno e Paese:</b> {{film[0].anno}}, {{film[0].nazione}}</h6>
+        <h6><b>Genere:</b> {{film[0].genere}}</h6>
+        <h6><b>Durata:</b> {{film[0].durata}}'</h6>
+        <h6><b>Trama:</b> {{film[0].trama}}</h6>
+        <div class="container mt-3">
+          <div class="row">
+            <div class="col-md-12 mt-3" *ngFor="let date of proiezioni | mapToUniqueDates">
+              <h5>{{ date | date:'EEEE dd/MM' }}</h5>
+              <div class="row">
+                <div class="col-md-1" *ngFor="let proiezioni of proiezioni | filterByDate: date">
+                  <span class="{{getSala(proiezioni)}} badge-size" [routerLink]="['/sala', proiezioni.id_sala, proiezioni.id_film, proiezioni.id_proiezione]">{{ proiezioni.ora_inizio | date:'shortTime' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

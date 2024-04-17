@@ -1,0 +1,8 @@
+<div class="summary-container">
+  <h1>Biglietto</h1>
+  <p class="summary-item"><span>Film:</span> {{ film }}</p>
+  <p class="summary-item"><span>Data:</span> {{ data | date:'longDate' }}</p>
+  <p class="summary-item"><span>Sala:</span> {{ sala }}</p>
+  <p class="summary-item"><span>Posti prenotati:</span> {{ posti.join(', ') }}</p>
+  <p class="summary-item"><span>Prezzo:</span> {{ costo }}</p>
+</div>

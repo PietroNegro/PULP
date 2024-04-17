@@ -1,0 +1,106 @@
+<div class="container center-screen">
+  <form novalidate [formGroup]="reactiveForm">
+    <!--nome-->
+    <div *ngIf="isRegistering" class="col-md-12 mb-2">
+      <input type="text"
+             class="form-control"
+             id="nome"
+             name="nome"
+             placeholder="nome"
+             formControlName="nome"
+             [ngClass]="{
+                'is-invalid':reactiveForm.controls['nome'].invalid && reactiveForm.controls['nome'].dirty,
+                'is-valid': reactiveForm.controls['nome'].valid && reactiveForm.controls['nome'].dirty
+             }">
+      <div *ngIf="reactiveForm.controls['nome'].errors && reactiveForm.controls['nome'].dirty" class="invalid-feedback">
+        <p *ngIf="reactiveForm.controls['nome'].errors['pattern']">formato non valido</p>
+        <p *ngIf="reactiveForm.controls['nome'].errors['required']">campo obbligatorio</p>
+      </div>
+    </div>
+
+    <!-- cognome -->
+    <div *ngIf="isRegistering" class="col-md-12 mb-2">
+      <input type="text"
+             class="form-control"
+             id="cognome"
+             name="cognome"
+             placeholder="cognome"
+             formControlName="cognome"
+             [ngClass]="{
+                'is-invalid':reactiveForm.controls['cognome'].invalid && reactiveForm.controls['cognome'].dirty,
+                'is-valid': reactiveForm.controls['cognome'].valid && reactiveForm.controls['cognome'].dirty
+             }">
+      <div *ngIf="reactiveForm.controls['cognome'].errors && reactiveForm.controls['cognome'].dirty" class="invalid-feedback">
+        <p *ngIf="reactiveForm.controls['cognome'].errors['pattern']">formato non valido</p>
+        <p *ngIf="reactiveForm.controls['cognome'].errors['required']">campo obbligatorio</p>
+      </div>
+    </div>
+
+    <!--mail-->
+    <div class="col-md-12 mb-2">
+      <input type="email"
+             class="form-control"
+             id="email"
+             name="email"
+             placeholder="email"
+             formControlName="email"
+             [ngClass]="{
+                'is-invalid':reactiveForm.controls['email'].invalid && reactiveForm.controls['email'].dirty,
+                'is-valid': reactiveForm.controls['email'].valid && reactiveForm.controls['email'].dirty
+             }">
+      <div *ngIf="reactiveForm.controls['email'].errors && reactiveForm.controls['email'].dirty"
+           class="invalid-feedback">
+        <p *ngIf="reactiveForm.controls['email'].errors['pattern']">formato non valido</p>
+        <p *ngIf="reactiveForm.controls['email'].errors['required']">campo obbligatorio</p>
+      </div>
+    </div>
+
+    <!--password-->
+    <div class="col-md-12 mb-2">
+      <input type="password"
+             class="form-control"
+             id="password"
+             name="password"
+             placeholder="password"
+             formControlName="password"
+             [ngClass]="{
+            'is-invalid':reactiveForm.controls['password'].invalid && reactiveForm.controls['password'].dirty,
+            'is-valid': reactiveForm.controls['password'].valid && reactiveForm.controls['password'].dirty
+         }">
+      <div *ngIf="reactiveForm.controls['password'].errors && reactiveForm.controls['password'].dirty"
+           class="invalid-feedback">
+        <p *ngIf="reactiveForm.controls['password'].errors['required']">campo obbligatorio</p>
+        <p *ngIf="reactiveForm.controls['password'].errors['minlength']">inserisci almeno 8 caratteri</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <button type="submit"
+                class="w-100 mt-3 mb-3 btn "
+                [ngClass]="{
+                    'btn-secondary': reactiveForm.invalid,
+                    'btn-primary': reactiveForm.valid
+                }"
+                [disabled]="reactiveForm.invalid"
+                (click)="loginOrRegister()">{{ isRegistering ? 'SIGN-UP' : 'LOGIN' }}
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <button type="reset"
+                class="w-100 mt-3 mb-3 btn btn-danger"
+                (click)="reactiveForm.reset()">RESET
+        </button>
+      </div>
+    </div>
+    <div style="text-align: center" *ngIf="!loginSuccess" (click)="toggleRegistering()">
+      {{ isRegistering ? 'Sei già registrato?' : 'Non sei ancora registrato?' }}
+    </div>
+    <div *ngIf="loginError" class="alert alert-danger" role="alert" style="text-align: center">
+      {{ loginError }}
+    </div>
+    <div *ngIf="loginSuccess" class="alert alert-success" role="alert" style="text-align: center">
+      {{ loginSuccess }}
+    </div>
+  </form>
+</div>

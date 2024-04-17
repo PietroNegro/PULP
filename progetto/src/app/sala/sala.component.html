@@ -1,0 +1,39 @@
+<body>
+<div class="container">
+  <h1 class="text-center mt-5">{{sala[0].nome}}</h1>
+  <ul class="legenda">
+    <li>
+      <div class="posto"></div>
+      <small>Disponibile</small>
+    </li>
+    <li>
+      <div class="posto selezionato"></div>
+      <small>Selezionato</small>
+    </li>
+    <li>
+      <div class="posto occupato"></div>
+      <small>Occupato</small>
+    </li>
+  </ul>
+  <p class="text">Hai selezionato
+    <span>{{ countPosti }}</span>
+    poltrone per un prezzo di €
+    <span>{{ costo }}</span>
+    <button class="btn btn-primary m-lg-3"
+            [routerLink]="['/acquisto-biglietto', film[0].titolo, proiezione[0].ora_inizio, sala[0].nome, getPostiSelezionati(), costo]"
+            [disabled]="countPosti === 0">Acquista
+    </button>
+  </p>
+  <div class="sala mb-5">
+    <div class="schermo"><h2>{{film[0].titolo}}</h2></div>
+    <div class="row mt-4" *ngFor="let fila of chunk(poltrone, 15)">
+      <div class="col" *ngFor="let posto of fila">
+        <div class="posto"
+             [class.selezionato]="posto.selezionato"
+             [class.occupato]="posto.stato === 'occupato'" (click)="selezionaPosto(posto)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

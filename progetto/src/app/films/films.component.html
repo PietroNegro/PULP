@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="film-list mt-3">
+    <div class="card myCard" *ngFor="let film of webService.films" style="border-radius: 15px">
+      <div class="card-body">
+        <a [routerLink]="['/film', film.id_film]">
+          <img class="card-img-top" src="../assets/{{film.locandina}}" style="border-radius: 15px">
+        </a>
+        <h6 class="card-title mt-3">{{film.titolo}}</h6>
+        <h6 class="card-text"><b>Regista:</b> {{film.regista}}</h6>
+        <h6 class="card-text"><b>Cast:</b> {{film.cast}}</h6>
+        <h6 class="card-text"><b>Anno e Paese:</b> {{film.anno}}, {{film.nazione}}</h6>
+        <h6 class="card-text"><b>Genere:</b> {{film.genere}}</h6>
+        <h6 class="card-text"><b>Durata:</b> {{film.durata}}'</h6>
+        <span class="{{getStato(film)}}">{{film.stato}}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.center-screen input[type="text"], .center-screen input[type="email"], .center-screen input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  background: transparent;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  text-align: center;
+}
+
+p{
+  text-align: center;
+}
