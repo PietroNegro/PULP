@@ -244,6 +244,36 @@ dispatcher.addListener("POST", "/api/login", function (req, res) {
   });
 });
 
+dispatcher.addListener("POST", "/api/inserisciPrenotazione", function (req, res) {
+  let con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "pulp"
+  });
+
+  con.connect(function (err) {
+    header['Content-Type'] = 'application/json';
+    res.writeHead(200, header);
+    if (!err) {
+      const query = `INSERT INTO prenotazioni (id_proiezione, id_utente, posti_prenotati) VALUES (?, ?, ?)`;
+      con.query(query, [req["post"].proiezione, req["post"].utente, req["post"].posti], function (errQ, resultQ) {
+        if (!errQ) {
+          res.end(JSON.stringify(resultQ));
+        } else {
+          res.writeHead(500);
+          res.end(JSON.stringify("ERRORE QUERY"));
+        }
+      });
+    } else {
+      res.writeHead(500);
+      res.end(JSON.stringify("ERRORE CONNESSIONE"));
+    }
+    con.end();
+  });
+});
+
+
 /* ********************************************************************** */
 var http = require("http");
 http.createServer(function (request, response) {

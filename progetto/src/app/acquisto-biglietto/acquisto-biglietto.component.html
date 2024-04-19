@@ -1,8 +1,20 @@
-<div class="summary-container">
-  <h1>Biglietto</h1>
-  <p class="summary-item"><span>Film:</span> {{ film }}</p>
-  <p class="summary-item"><span>Data:</span> {{ data | date:'longDate' }}</p>
-  <p class="summary-item"><span>Sala:</span> {{ sala }}</p>
-  <p class="summary-item"><span>Posti prenotati:</span> {{ posti.join(', ') }}</p>
-  <p class="summary-item"><span>Prezzo:</span> {{ costo }}</p>
+<div class="container">
+  <div class="summary-container">
+    <h1>Biglietto</h1>
+    <p class="summary-item"><span>Film:</span> {{ film }}</p>
+    <p class="summary-item"><span>Data:</span> {{ data | date:'longDate' }}</p>
+    <p class="summary-item"><span>Sala:</span> {{ sala }}</p>
+    <p class="summary-item"><span>Posti prenotati:</span> {{ posti.join(', ') }}</p>
+    <p class="summary-item"><span>Prezzo:</span> {{ costo }}</p>
+    <button class="btn btn-primary" (click)="acquista()" [disabled]="acquistoAvvenuto">Acquista</button>
+  </div>
 </div>
+<div *ngIf="prenotaError" class="alert alert-danger" role="alert" style="text-align: center">
+  {{ prenotaError }}
+  <button class="btn btn-light" routerLink="/homepage" routerLinkActive="active">torna alla home</button>
+</div>
+<div *ngIf="prenotaSuccess" class="alert alert-success " role="alert" style="text-align: center">
+  {{ prenotaSuccess }}
+  <button class="btn btn-light" routerLink="/homepage" routerLinkActive="active">torna alla home</button>
+</div>
+

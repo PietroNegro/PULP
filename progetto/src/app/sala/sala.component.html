@@ -20,7 +20,7 @@
     poltrone per un prezzo di €
     <span>{{ costo }}</span>
     <button class="btn btn-primary m-lg-3"
-            [routerLink]="['/acquisto-biglietto', film[0].titolo, proiezione[0].ora_inizio, sala[0].nome, getPostiSelezionati(), costo]"
+            [routerLink]="['/acquisto-biglietto', film[0].titolo, proiezione[0].ora_inizio, sala[0].nome, getPostiSelezionati(), costo, proiezione[0].id_proiezione]"
             [disabled]="countPosti === 0">Acquista
     </button>
   </p>

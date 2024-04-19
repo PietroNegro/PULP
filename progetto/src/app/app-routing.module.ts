@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'menu', component: MenuComponent},
   {path: 'sala/:id_sala/:id_film/:id_proiezione', component: SalaComponent},
   {path: 'login', component: LoginComponent},
-  { path: 'acquisto-biglietto/:film/:data/:sala/:posti/:costo', component: AcquistoBigliettoComponent },
+  { path: 'acquisto-biglietto/:film/:data/:sala/:posti/:costo/:proiezione', component: AcquistoBigliettoComponent },
 ];
 
 @NgModule({

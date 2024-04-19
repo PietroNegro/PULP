@@ -135,4 +135,19 @@ export class WebserviceService {
       );
     });
   }
+
+  async inserisciPrenotazione(endPoint: string, par: any): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.connectionService.sendPostRequest(endPoint, par).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (error: any) => { // chiamata NON OK
+          console.log("Errore Get Server Data");
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  }
 }
